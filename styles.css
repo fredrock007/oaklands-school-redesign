@@ -234,3 +234,55 @@
 .hero::after,.page-hero::after{animation-duration:125s!important;opacity:.14}
 .hero-grid{animation-duration:90s!important}
 .header-art{opacity:.48}
+
+
+/* Elegant photo hover lift: a slow, restrained floating pop-out effect. */
+@media (hover:hover) and (pointer:fine){
+  .photo-tile,.home-photo-card,.school-photo-hero,.media-admin-item .media-thumb{
+    position:relative;
+    transform:translate3d(0,0,0) scale(1);
+    transform-origin:center;
+    transition:transform 850ms cubic-bezier(.2,.7,.2,1),box-shadow 850ms cubic-bezier(.2,.7,.2,1);
+    will-change:transform;
+  }
+  .photo-tile:hover,.photo-tile:focus-within{
+    transform:translate3d(0,-9px,0) scale(1.018);
+    box-shadow:0 23px 46px rgba(17,37,61,.2);
+    z-index:2;
+  }
+  .home-photo-card:hover,.home-photo-card:focus-visible{
+    transform:translate3d(0,-6px,0) scale(1.04);
+    filter:drop-shadow(0 12px 14px rgba(17,37,61,.15));
+    z-index:2;
+  }
+  .school-photo-hero:hover{
+    transform:translate3d(0,-6px,0) scale(1.012);
+    box-shadow:0 24px 48px rgba(17,37,61,.22);
+  }
+  .media-admin-item .media-thumb:hover{
+    transform:translate3d(0,-4px,0) scale(1.04);
+    box-shadow:0 10px 24px rgba(17,37,61,.18);
+    z-index:2;
+  }
+  .photo-tile-visual img,.real-hero-photo{
+    transition:transform 1100ms cubic-bezier(.2,.7,.2,1),filter 1100ms ease;
+    transform:scale(1);
+    transform-origin:center;
+  }
+  .photo-tile:hover .photo-tile-visual img,
+  .photo-tile:focus-within .photo-tile-visual img,
+  .home-photo-card:hover .photo-tile-visual img,
+  .home-photo-card:focus-visible .photo-tile-visual img{
+    transform:scale(1.06);
+  }
+  .school-photo-hero:hover .real-hero-photo{transform:scale(1.045)}
+  .gallery-lightbox img{transition:transform 1100ms cubic-bezier(.2,.7,.2,1)}
+  .gallery-lightbox img:hover{transform:scale(1.018)}
+}
+@media (prefers-reduced-motion:reduce){
+  .photo-tile,.home-photo-card,.school-photo-hero,.media-admin-item .media-thumb,
+  .photo-tile-visual img,.real-hero-photo,.gallery-lightbox img{
+    transition:none!important;
+    transform:none!important;
+  }
+}
