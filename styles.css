@@ -286,3 +286,78 @@
     transform:none!important;
   }
 }
+
+
+/* Photo preview: visible, elegant movement before clicking "View photo".
+   Applied directly to the visual surface and its parent card, without relying
+   on pointer-capability media queries (which can misreport touch laptops). */
+.photo-tile,
+.home-photo-card,
+.school-photo-hero {
+  transform:translateY(0) scale(1);
+  transform-origin:center center;
+  transition:transform 1050ms cubic-bezier(.18,.72,.22,1),
+             box-shadow 1050ms cubic-bezier(.18,.72,.22,1),
+             filter 1050ms ease;
+}
+.photo-tile {
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+}
+.photo-tile:hover,
+.photo-tile:focus-within {
+  transform:translateY(-13px) scale(1.035);
+  box-shadow:0 28px 56px rgba(11,30,55,.26),0 8px 20px rgba(11,30,55,.12);
+  z-index:5;
+}
+.photo-tile-visual {
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+}
+.photo-tile-visual img,
+.home-photo-card .photo-tile-visual img,
+.school-photo-hero .real-hero-photo {
+  display:block;
+  transform:scale(1);
+  transform-origin:center;
+  transition:transform 1200ms cubic-bezier(.17,.73,.2,1),
+             filter 1200ms ease;
+}
+.photo-tile:hover .photo-tile-visual img,
+.photo-tile-visual:hover img,
+.photo-tile:focus-within .photo-tile-visual img,
+.home-photo-card:hover .photo-tile-visual img,
+.home-photo-card:focus-visible .photo-tile-visual img {
+  transform:scale(1.115);
+}
+.photo-tile-visual:hover,
+.photo-tile-visual:focus-within {
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);
+}
+.photo-tile:hover .photo-open,
+.photo-tile-visual:hover .photo-open {
+  box-shadow:0 8px 22px rgba(7,27,51,.28);
+}
+.home-photo-card:hover,
+.home-photo-card:focus-visible {
+  transform:translateY(-8px) scale(1.055);
+  filter:drop-shadow(0 16px 18px rgba(17,37,61,.22));
+  position:relative;
+  z-index:3;
+}
+.school-photo-hero:hover {
+  transform:translateY(-8px) scale(1.025);
+  box-shadow:0 28px 54px rgba(11,30,55,.25);
+}
+.school-photo-hero:hover .real-hero-photo {
+  transform:scale(1.075);
+}
+@media (prefers-reduced-motion:reduce) {
+  .photo-tile,.home-photo-card,.school-photo-hero,
+  .photo-tile-visual img,.real-hero-photo {
+    transition:none!important;
+    transform:none!important;
+  }
+}
